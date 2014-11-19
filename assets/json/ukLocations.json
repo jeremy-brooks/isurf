@@ -1,0 +1,55 @@
+[
+    {
+        "name": "Lynmouth",
+        "spectralPlot": "http://www-nwp/~frxs/ukwaters/nrwave_plots/lynmouth_ts5day.gif",
+        "detail": {
+            "elevation": "100.0",
+            "id": "324276",
+            "latitude": "51.23",
+            "longitude": "-3.83",
+            "name": "Lynmouth",
+            "nationalPark": "Exmoor National Park",
+            "region": "sw",
+            "unitaryAuthArea": "Devon"
+        }
+    },
+    {
+        "name": "Woolacombe",
+        "spectralPlot": "http://www-nwp/~frxs/ukwaters/nrwave_plots/woolacombe_ts5day.gif",
+        "detail": {
+            "elevation": "0.0",
+            "id": "354509",
+            "latitude": "51.16",
+            "longitude": "-4.2147",
+            "name": "Woolacombe (Beach)",
+            "region": "sw",
+            "unitaryAuthArea": "Devon"
+        }
+    },
+    {
+        "name": "Bude",
+        "spectralPlot": "http://www-nwp/~frxs/ukwaters/nrwave_plots/bude_ts5day.gif",
+        "detail": {
+            "elevation": "7.0",
+            "id": "310182",
+            "latitude": "50.8262",
+            "longitude": "-4.5425",
+            "name": "Bude",
+            "region": "sw",
+            "unitaryAuthArea": "Cornwall"
+        }
+    },
+    {
+        "name": "Gwithian",
+        "spectralPlot": "http://www-nwp/~frxs/ukwaters/nrwave_plots/gwithian_ts5day.gif",
+        "detail": {
+            "elevation": "0.0",
+            "id": "354544",
+            "latitude": "50.2124",
+            "longitude": "-5.4075",
+            "name": "The Towans - Godrevy (Beach)",
+            "region": "sw",
+            "unitaryAuthArea": "Cornwall"
+        }
+    }
+]

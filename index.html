@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?res=3hourly&key=d33e4f17-d398-47a4-a908-0bf4f0b67eea -->
+    <meta charset="UTF-8">
+    <title>isurf</title>
+    <link href="libs/bootstrap-cutsom/css/bootstrap.css" rel="stylesheet">
+    <link href="libs/bootstrap-cutsom/css/bootstrap-theme.css" rel="stylesheet">
+    <script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="application/javascript" src="libs/bootstrap-cutsom/js/bootstrap.js"></script>
+    <script type="application/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    <link href="assets/css/isurf.css" rel="stylesheet">
+</head>
+<body data-ng-app="isurf">
+<div class="container-fluid" data-ng-controller="IsurfController">
+
+    <div class="page-header">
+        <h1>ISurf
+            <small>combined forecast and obs data from the UK and US</small>
+        </h1>
+    </div>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Met
+                            office locations <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li data-ng-repeat="location in locations">
+                                <a href="#">{{location.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-3" data-ng-repeat="location in locations">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{location.name}}</h4>
+                </div>
+                <div class="panel-body">
+                    <img src="{{location.spectralPlot}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var isurf = angular.module('isurf', []);
+        isurf.config(function($httpProvider) {
+            //Enable cross domain calls
+            $httpProvider.defaults.useXDomain = true;
+            //Remove the header used to identify ajax call  that would prevent CORS from working
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        });
+        isurf.controller('IsurfController', function ($scope, $http) {
+            $http.get('assets/json/ukLocations.json').success(function (data) {
+                $scope.locations = data;
+            });
+            $http.get('/public/data/val/wxfcs/all/json/sitelist?res=3hourly&key=d33e4f17-d398-47a4-a908-0bf4f0b67eea').success(function (data) {
+                $scope.moLocations = data.Locations.Location;
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>
